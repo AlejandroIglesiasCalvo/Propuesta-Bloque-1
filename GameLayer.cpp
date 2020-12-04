@@ -304,7 +304,7 @@ void GameLayer::draw() {
 	for (auto const& projectile : projectiles) {
 		projectile->draw(scrollX);
 	}
-	cup->draw(scrollX);//Copa de la victoria
+	//cup->draw(scrollX);//Copa de la victoria
 	//Enemigos antes que colisiones, por si les damos
 	for (auto const& enemy : enemies) {
 		enemy->draw(scrollX);

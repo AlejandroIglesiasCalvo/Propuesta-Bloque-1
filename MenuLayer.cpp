@@ -9,13 +9,17 @@ MenuLayer::MenuLayer(Game* game)
 
 void MenuLayer::init() {
 	// Fondo normal, sin velocidad
-	background = new Background("res/menu_fondo.png", WIDTH * 0.5, HEIGHT * 0.5, game);
-	button = new Actor("res/boton_jugar.png", WIDTH * 0.5, HEIGHT * 0.7, 232, 72, game);
+	background = new Background("res/capa2.png", WIDTH * 0.5, HEIGHT * 0.5, game);
+	button1 = new Actor("res/1.png", WIDTH * 0.2, HEIGHT * 0.2, 25, 72, game);
+	button2 = new Actor("res/2.png", WIDTH * 0.5, HEIGHT * 0.2, 25, 72, game);
+	button3 = new Actor("res/3.png", WIDTH * 0.7, HEIGHT * 0.2, 25, 72, game);
 }
 
 void MenuLayer::draw() {
 	background->draw();
-	button->draw();
+	button1->draw();
+	button2->draw();
+	button3->draw();
 
 	SDL_RenderPresent(game->renderer); // Renderiza NO PUEDE FALTAR
 }
@@ -56,11 +60,12 @@ void MenuLayer::processControls() {
 	}
 
 	//procesar controles, solo tiene uno
-	if (controlContinue) {
+	if (controlContinue<=-1) {
 		// Cambia la capa
-		game->layer = game->gameLayer;
-		controlContinue = false;
+		game->mapa = controlContinue;
+		game->layer = game->menuPersonaje;
 	}
+	
 }
 void MenuLayer::keysToControls(SDL_Event event) {
 	if (event.type == SDL_KEYDOWN) {
@@ -86,8 +91,14 @@ void MenuLayer::mouseToControls(SDL_Event event) {
 
 	// Cada vez que hacen click
 	if (event.type == SDL_MOUSEBUTTONDOWN) {
-		if (button->containsPoint(motionX, motionY)) {
-			controlContinue = true;
+		if (button1->containsPoint(motionX, motionY)) {
+			controlContinue = 1;
+		}
+		if (button2->containsPoint(motionX, motionY)) {
+			controlContinue = 2;
+		}
+		if (button3->containsPoint(motionX, motionY)) {
+			controlContinue = 3;
 		}
 	}
 }

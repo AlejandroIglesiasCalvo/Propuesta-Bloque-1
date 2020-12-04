@@ -29,11 +29,13 @@ public:
 	bool loopActive; // Juego activo
 	Layer* layer;
 	Layer* menuLayer;
-	Layer* MenuPersonaje;
+	Layer* menuPersonaje;
 	Layer* gameLayer;
 	int currentLevel = 0;
 	int finalLevel = 2;
 	int input;
+	int mapa = -1;
+	int jugadores = -1;
 	int const inputKeyboard = 1;
 	int const inputMouse = 2;
 	int const inputGamePad = 3;
